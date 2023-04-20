@@ -18,7 +18,7 @@ class RegisterForm extends Component
 
     protected $rules = [
         'name' => 'required|string|min:2|max:55',
-        'email' => 'required|email|string|exists:users',
+        'email' => 'required|email|string|unique:users',
     ];
 
     public function submit(CreateNewUser $user, SendLoginLink $action): void
@@ -40,7 +40,9 @@ class RegisterForm extends Component
 
         $action->handle($this->email);
 
-        $this->status = 'An email has been sent for you to log in.';
+        session()->flash('success', 'An email has been sent for you to log in.');
+
+        $this->reset(['email', 'name']);
     }
 
     public function render(): View
