@@ -15,18 +15,18 @@ class SendLoginLink
     }
 
     /**
- * Send a login URL to the user.
- *
- * @param  string  $email
- * @return void
- */
+     * Send a login URL to the user.
+     *
+     * @param  string  $email
+     * @return void
+     */
 
- private function sendURL(string $email): void
+    private function sendURL(string $email): void
     {
         $loginLink = URL::signedRoute(
             'login:store',
-            ['email' => $email],
-            900 // link expiration after 15minute (900)
+            ['email' => $email, 'timestamp' => now()->timestamp],
+            config('passwordless.expired_time') // link expiration after 15minute (900)
         );
         Mail::to($email)->send(new LoginLink($loginLink));
     }
@@ -37,12 +37,11 @@ class SendLoginLink
      * @var string Email
      *
      */
-
     private function handleWithRateLimit(string $email): void
     {
         $key = 'send-to' . $email;
-        $decayRate = 120; // 2 minute
-        $maxAttempts = 1;
+        $decayRate = config('passwordless.rate_limit'); // 2 minute
+        $maxAttempts = config('passwordless.max_attempts'); // 1
 
         $executed = RateLimiter::attempt(
             $key,
@@ -63,7 +62,7 @@ class SendLoginLink
     private function handleWithRateLimitError(string $key): void
     {
         $seconds = RateLimiter::availableIn($key);
- 
+
         session()->flash('error', "Plz try again after {$seconds} seconds");
     }
 
