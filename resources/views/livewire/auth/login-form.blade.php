@@ -1,7 +1,7 @@
 <form class="space-y-6" wire:submit.prevent="submit">
     @csrf
 
-    <x-status class="mb-4" :status="$status" />
+    <x-status class="mb-4" />
 
     <div>
         <x-form.label for="email">

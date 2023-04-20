@@ -10,8 +10,6 @@ class LoginForm extends Component
 {
     public string $email = '';
 
-    public string $status = '';
-
     protected $rules = [
         'email' => 'required|email|string|exists:users',
     ];
@@ -21,8 +19,6 @@ class LoginForm extends Component
         $this->validate();
 
         $action->handle($this->email);
-
-        $this->status = 'An email has been sent for you to log in.';
     }
 
     public function render(): View

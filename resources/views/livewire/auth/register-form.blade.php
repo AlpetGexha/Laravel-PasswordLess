@@ -1,7 +1,7 @@
 <form class="space-y-6" wire:submit.prevent="submit">
     @csrf
 
-    <x-status class="mb-4" :status="$status" />
+    <x-status class="mb-4" />
 
     <div>
         <x-form.label for="name">
@@ -9,10 +9,10 @@
         </x-form.label>
         <div class="mt-2">
             <x-form.input
+                wire:model.defer="name"
                 id="name"
                 name="name"
                 type="text"
-                wire:model.defer="name"
                 required
                 autofocus
             />
