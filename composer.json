@@ -24,7 +24,8 @@
     "pestphp/pest": "^1.22.5",
     "pestphp/pest-plugin-laravel": "^1.4",
     "spatie/laravel-ignition": "^2.0",
-    "tightenco/duster": "^1.2"
+    "tightenco/duster": "^1.2",
+    "tomasvotruba/bladestan": "^0.2.1"
   },
   "autoload": {
     "psr-4": {
