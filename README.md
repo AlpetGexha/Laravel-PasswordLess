@@ -4,6 +4,9 @@
 
 By eliminating the need for passwords, passwordless authentication can provide several benefits, including increased security, reduced risk of password-related attacks (such as phishing and credential stuffing), and a more user-friendly experience
 
+![image](https://user-images.githubusercontent.com/50520333/233510580-ff958ac5-a5d1-46f5-b77f-d90d4a5f7a8d.png)
+
+
 ### Who to do this
 
 We are going to use Laravel & Livewire
